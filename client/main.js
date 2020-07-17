@@ -1,9 +1,9 @@
 const button = document.getElementById(`input-submit`);
 button.addEventListener('click', submitText);
 const wordList = document.querySelector('ul');
-let origStr;
 let reversedText;
-
+let origStr;
+let str;
 loadWords()
 
 function loadWords() {
@@ -15,16 +15,15 @@ function loadWords() {
 
 function submitText(e) {
   e.preventDefault();
-  let origStr = document.getElementById(`input-text`).value
+  origStr = document.getElementById(`input-text`).value
   let textBox = document.getElementById(`input-text`)
   let str;
   textBox.value = ""
     reverseText(origStr)
 
     const wordData = {
-      original: str, backwards: reversedText
+      original: origStr, backwards: reversedText
     };
-
     const options = {
       method: 'POST',
       body: JSON.stringify(wordData)
@@ -38,7 +37,7 @@ function submitText(e) {
 
 function reverseText(str){
   reversedText = str.split('').reverse().join('');
-  return str, reversedText
+  return reversedText
 }
 
 function outputReversedText(wordData) {
